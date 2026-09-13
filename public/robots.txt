@@ -1,4 +1,19 @@
+# robots.txt for favvicon.com
+# Allow all crawlers complete access to favicon guides, tools, and assets
+
 User-agent: *
 Allow: /
 
+# Image crawlers for favicon guides and preview graphics
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# XML Sitemaps
 Sitemap: https://favvicon.com/sitemap-index.xml
+Sitemap: https://favvicon.pages.dev/sitemap-index.xml
