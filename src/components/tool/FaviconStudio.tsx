@@ -427,7 +427,7 @@ Generated with 100% privacy at https://favvicon.com
                 <span className="font-semibold text-[var(--foreground)]">Or pick a sample template:</span>
                 <span className="text-[11px]">Instant live testing</span>
               </div>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {PRESET_ICONS.map((preset) => (
                   <button
                     key={preset.id}
@@ -560,7 +560,7 @@ Generated with 100% privacy at https://favvicon.com
           </div>
 
           {/* Download Action Center */}
-          <div className="rounded-2xl border border-[var(--border)] bg-gradient-to-br from-[var(--card)] via-[var(--card)] to-cyan-500/5 p-6 shadow-xl space-y-4">
+          <div className="rounded-2xl border border-[var(--border)] bg-gradient-to-br from-[var(--card)] via-[var(--card)] to-cyan-500/5 p-4 sm:p-6 shadow-xl space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--foreground)] flex items-center gap-2">
                 <Download className="w-4 h-4 text-cyan-400" />
@@ -654,7 +654,7 @@ Generated with 100% privacy at https://favvicon.com
               </div>
 
               {/* Device Switcher Tabs */}
-              <div className="flex flex-wrap items-center gap-1.5 bg-[var(--card)] p-1 rounded-xl border border-[var(--border)]">
+              <div className="flex items-center gap-1.5 bg-[var(--card)] p-1 rounded-xl border border-[var(--border)] overflow-x-auto no-scrollbar max-w-full flex-nowrap sm:flex-wrap">
                 <button
                   onClick={() => setPreviewTab('chrome')}
                   className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
@@ -738,7 +738,7 @@ Generated with 100% privacy at https://favvicon.com
             </div>
 
             {/* Mockup Canvas Viewport */}
-            <div className="p-8 min-h-[340px] flex items-center justify-center bg-gradient-to-b from-[var(--background)] to-[var(--muted)]/20">
+            <div className="p-4 sm:p-8 min-h-[300px] sm:min-h-[340px] flex items-center justify-center bg-gradient-to-b from-[var(--background)] to-[var(--muted)]/20">
               
               {/* 1. Chrome Tab Mockup */}
               {previewTab === 'chrome' && (
@@ -968,7 +968,7 @@ Generated with 100% privacy at https://favvicon.com
           </div>
 
           {/* Code Snippet Generator Hub */}
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-lg space-y-4" id="snippets">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-4 sm:p-6 shadow-lg space-y-4" id="snippets">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--foreground)] flex items-center gap-2">
@@ -981,7 +981,7 @@ Generated with 100% privacy at https://favvicon.com
               </div>
 
               {/* Preset Switcher Pills */}
-              <div className="flex flex-wrap items-center gap-1.5 bg-[var(--muted)]/40 p-1 rounded-xl border border-[var(--border)]">
+              <div className="flex items-center gap-1.5 bg-[var(--muted)]/40 p-1 rounded-xl border border-[var(--border)] overflow-x-auto no-scrollbar max-w-full flex-nowrap sm:flex-wrap">
                 {(Object.keys(CODE_SNIPPET_PRESETS) as Array<keyof typeof CODE_SNIPPET_PRESETS>).map((key) => (
                   <button
                     key={key}

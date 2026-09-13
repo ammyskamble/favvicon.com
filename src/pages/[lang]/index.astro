@@ -31,13 +31,13 @@ const { lang } = Astro.params as { lang: SupportedLanguage };
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
       
       <!-- Eyebrow Badge -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-        <span>Standard Favicon Size 2026 • Free PNG to Favicon Generator & Maker</span>
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold shadow-sm max-w-full">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping shrink-0"></span>
+        <span class="truncate sm:whitespace-normal">Standard Favicon Size 2026 • Free PNG to Favicon Generator</span>
       </div>
 
       <!-- Main H1 Headline -->
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--foreground)] max-w-4xl mx-auto leading-[1.15]">
+      <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-[var(--foreground)] max-w-4xl mx-auto leading-[1.2] sm:leading-[1.15]">
         Favicon Size Guide & <br class="hidden sm:inline" />
         <span class="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
           Online Favicon Generator
@@ -45,27 +45,27 @@ const { lang } = Astro.params as { lang: SupportedLanguage };
       </h1>
 
       <!-- Subtitle Description -->
-      <p class="text-sm sm:text-base text-[var(--muted-foreground)] max-w-2xl mx-auto leading-relaxed">
+      <p class="text-xs sm:text-base text-[var(--muted-foreground)] max-w-2xl mx-auto leading-relaxed">
         Discover what size should a favicon be for website design. Find standard favicon size specs for browsers, iOS, Android, and PWAs. Use our free PNG to favicon maker to preview in real device mockups and export complete packs in seconds.
       </p>
 
-      <!-- Key Advantage Badges -->
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-medium text-[var(--foreground)]">
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+      <!-- Key Advantage Badges (2x2 grid on mobile, flex wrap on desktop) -->
+      <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2.5 pt-2 text-xs font-medium text-[var(--foreground)]">
+        <div class="flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
           <span class="text-cyan-400 font-bold">✓</span>
-          <span>Standard Favicon Size Matrix</span>
+          <span class="text-[11px] sm:text-xs">Standard Size Matrix</span>
         </div>
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+        <div class="flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
           <span class="text-cyan-400 font-bold">✓</span>
-          <span>Free PNG to Favicon Maker</span>
+          <span class="text-[11px] sm:text-xs">Free Favicon Maker</span>
         </div>
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+        <div class="flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
           <span class="text-cyan-400 font-bold">✓</span>
-          <span>Multi-Resolution ICO, PNG & SVG</span>
+          <span class="text-[11px] sm:text-xs">ICO, PNG & SVG</span>
         </div>
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+        <div class="flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
           <span class="text-cyan-400 font-bold">✓</span>
-          <span>Google SERP 48px Ready</span>
+          <span class="text-[11px] sm:text-xs">Google SERP 48px</span>
         </div>
       </div>
 

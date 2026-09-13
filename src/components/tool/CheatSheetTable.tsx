@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { FAVICON_SPECS, type FaviconSpec } from '../../data/faviconSizesData';
-import { Search, Copy, Check, Filter, ExternalLink, Sparkles, ShieldCheck, Info } from 'lucide-react';
+import { Search, Copy, Check, ShieldCheck, Sparkles } from 'lucide-react';
 
 export const CheatSheetTable: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -74,13 +74,13 @@ export const CheatSheetTable: React.FC = () => {
     <div className="w-full space-y-6">
       {/* Search and Filter Bar */}
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
-        {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2">
+        {/* Category Filter Pills (Mobile-friendly horizontal scroll) */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 max-w-full flex-nowrap sm:flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition-all cursor-pointer border ${
+              className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition-all cursor-pointer border whitespace-nowrap shrink-0 ${
                 selectedCategory === cat.id
                   ? 'bg-gradient-to-r from-indigo-500 to-cyan-500 text-white border-transparent shadow-md shadow-indigo-500/20 font-semibold'
                   : 'bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] border-[var(--border)] hover:border-cyan-500/40'
@@ -92,14 +92,14 @@ export const CheatSheetTable: React.FC = () => {
         </div>
 
         {/* Live Search Input */}
-        <div className="relative min-w-[280px]">
+        <div className="relative w-full lg:w-auto lg:min-w-[280px]">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--muted-foreground)]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search size, platform, filename..."
-            className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition-all"
+            placeholder="Search size, platform, format..."
+            className="w-full pl-10 pr-12 py-2 text-xs rounded-xl bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] placeholder-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-cyan-500/40 focus:border-cyan-500 transition-all"
           />
           {searchQuery && (
             <button
@@ -112,10 +112,98 @@ export const CheatSheetTable: React.FC = () => {
         </div>
       </div>
 
-      {/* Specs Table */}
+      {/* Main Container */}
       <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] overflow-hidden shadow-lg">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+        
+        {/* 1. Mobile & Tablet Card View (Visible on screens < lg) */}
+        <div className="lg:hidden divide-y divide-[var(--border)]">
+          {filteredSpecs.length === 0 ? (
+            <div className="py-12 px-4 text-center text-xs text-[var(--muted-foreground)]">
+              No favicon dimensions match your search filter "{searchQuery}".
+            </div>
+          ) : (
+            filteredSpecs.map((spec) => {
+              const isCopied = copiedId === spec.id;
+              return (
+                <div key={spec.id} className="p-4 space-y-3 hover:bg-[var(--accent)]/30 transition-colors">
+                  {/* Top Bar: Dimension Badge + Format + Priority */}
+                  <div className="flex items-center justify-between gap-2 flex-wrap">
+                    <div className="flex items-center gap-2">
+                      <span className="font-tabular font-black text-base text-[var(--foreground)] tracking-tight">
+                        {spec.dimensionStr}
+                      </span>
+                      <span
+                        className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-bold border ${getFormatBadgeStyle(
+                          spec.format
+                        )}`}
+                      >
+                        {spec.format}
+                      </span>
+                    </div>
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] border ${getImportanceBadgeStyle(
+                        spec.importance
+                      )}`}
+                    >
+                      {spec.importance}
+                    </span>
+                  </div>
+
+                  {/* Target Platform & File Name */}
+                  <div>
+                    <div className="font-semibold text-xs sm:text-sm text-[var(--foreground)]">
+                      {spec.name}
+                    </div>
+                    <div className="font-mono text-xs text-cyan-400 font-medium">
+                      {spec.filename}
+                    </div>
+                  </div>
+
+                  {/* Purpose Description & Best Practices */}
+                  <div className="text-xs text-[var(--muted-foreground)] leading-relaxed space-y-1">
+                    <p>{spec.purpose}</p>
+                    {spec.notes && (
+                      <p className="text-[11px] text-[var(--muted-foreground)]/80 italic">
+                        {spec.notes}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* HTML Tag Snippet & 1-Tap Copy Action */}
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-[var(--muted)]/50 border border-[var(--border)]">
+                    <code className="text-[11px] font-mono text-cyan-300 truncate max-w-full select-all">
+                      {spec.tagSnippet}
+                    </code>
+                    <button
+                      onClick={() => copyToClipboard(spec.tagSnippet, spec.id)}
+                      className={`shrink-0 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer border ${
+                        isCopied
+                          ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-sm'
+                          : 'bg-[var(--card)] hover:bg-[var(--accent)] text-[var(--foreground)] border-[var(--border)] hover:border-cyan-400/50'
+                      }`}
+                    >
+                      {isCopied ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 text-cyan-400" />
+                          <span>Copy Tag</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* 2. Desktop Tabular View (Visible on screens >= lg) */}
+        <div className="hidden lg:block overflow-x-auto">
+          <table className="w-full min-w-[880px] text-left border-collapse">
             <thead>
               <tr className="border-b border-[var(--border)] bg-[var(--muted)]/50 text-[11px] uppercase tracking-wider font-semibold text-[var(--muted-foreground)]">
                 <th className="py-3.5 px-4">Dimension</th>
@@ -223,7 +311,7 @@ export const CheatSheetTable: React.FC = () => {
         {/* Table Summary / Footer */}
         <div className="py-3 px-4 bg-[var(--muted)]/30 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--muted-foreground)]">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-cyan-400" />
+            <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
             <span>
               Showing <strong className="text-[var(--foreground)]">{filteredSpecs.length}</strong> specifications compliant with W3C & modern OS standards.
             </span>
