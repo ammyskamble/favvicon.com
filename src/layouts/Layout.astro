@@ -22,14 +22,15 @@ const {
   currentPath = ""
 } = Astro.props;
 
-const canonicalUrl = canonical || `https://favvicon.com${getRelativeLocaleUrl(lang, currentPath)}`;
+const siteOrigin = Astro.site ? Astro.site.origin : 'https://favvicon.pages.dev';
+const canonicalUrl = canonical || `${siteOrigin}${getRelativeLocaleUrl(lang, currentPath)}`;
 
 const siteSchema = [
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Favicon Size Guide & Generator",
-    "url": "https://favvicon.com/",
+    "url": `${siteOrigin}/`,
     "description": description,
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
@@ -42,19 +43,19 @@ const siteSchema = [
     },
     "creator": {
       "@type": "Organization",
-      "name": "Favvicon.com",
-      "url": "https://favvicon.com/"
+      "name": "Favvicon",
+      "url": `${siteOrigin}/`
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Favvicon.com",
-    "url": "https://favvicon.com/",
+    "name": "Favvicon",
+    "url": `${siteOrigin}/`,
     "description": "The ultimate favicon size cheat sheet, asset validator, and PNG to favicon maker.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://favvicon.com/?q={search_term_string}",
+      "target": `${siteOrigin}/?q={search_term_string}`,
       "query-input": "required name=search_term_string"
     }
   }
@@ -68,7 +69,7 @@ const siteSchema = [
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="Favicon size, what is a favicon, favicon, favicon generator, what is favicon, favicon meaning, png to favicon, favicon maker, what is a favicon?, standard favicon size, favicon format, favicon size for website, what size should a favicon be" />
-    <meta name="author" content="Favvicon.com" />
+    <meta name="author" content="Favvicon" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonicalUrl} />
 
@@ -77,13 +78,13 @@ const siteSchema = [
       <link
         rel="alternate"
         hreflang={code}
-        href={`https://favvicon.com${getRelativeLocaleUrl(code, currentPath)}`}
+        href={`${siteOrigin}${getRelativeLocaleUrl(code, currentPath)}`}
       />
     ))}
     <link
       rel="alternate"
       hreflang="x-default"
-      href={`https://favvicon.com${getRelativeLocaleUrl(defaultLang, currentPath)}`}
+      href={`${siteOrigin}${getRelativeLocaleUrl(defaultLang, currentPath)}`}
     />
 
     <!-- Open Graph / Facebook -->
@@ -91,8 +92,8 @@ const siteSchema = [
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Favvicon.com" />
-    <meta property="og:image" content="https://favvicon.com/og-image.png" />
+    <meta property="og:site_name" content="Favvicon" />
+    <meta property="og:image" content={`${siteOrigin}/og-image.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Favicon Size Guide & Online Generator Preview" />
@@ -103,7 +104,7 @@ const siteSchema = [
     <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://favvicon.com/og-image.png" />
+    <meta name="twitter:image" content={`${siteOrigin}/og-image.png`} />
     <meta name="twitter:image:alt" content="Favicon Size Guide & Online Generator Preview" />
 
     <!-- Favicon Suite -->

@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://favvicon.com',
+  site: 'https://favvicon.pages.dev',
   trailingSlash: 'always',
   i18n: {
     defaultLocale: 'en',
