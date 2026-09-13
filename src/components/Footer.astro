@@ -1,0 +1,87 @@
+---
+// src/components/Footer.astro
+import { type SupportedLanguage, getRelativeLocaleUrl } from '../i18n/ui';
+
+interface Props {
+  currentLang?: SupportedLanguage;
+}
+
+const { currentLang = 'en' } = Astro.props;
+const year = new Date().getFullYear();
+const homeUrl = getRelativeLocaleUrl(currentLang);
+---
+<footer class="border-t border-[var(--border)] bg-[var(--card)] mt-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <!-- Brand column -->
+      <div class="md:col-span-1 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center text-white font-black text-sm">
+            F
+          </div>
+          <span class="font-extrabold text-base tracking-tight text-[var(--foreground)]">
+            Favvicon<span class="text-cyan-400">.com</span>
+          </span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+          The comprehensive standard favicon size cheat sheet, asset validator, and client-side multi-format generation engine. 100% browser-based with zero tracking.
+        </p>
+        <div class="pt-2 flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            100% Client-Side Private
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)] mb-4">
+          Generator & Tools
+        </h4>
+        <ul class="space-y-2.5 text-xs text-[var(--muted-foreground)]">
+          <li><a href={`${homeUrl}#studio`} class="hover:text-[var(--foreground)] transition-colors">Instant Favicon Generator</a></li>
+          <li><a href={`${homeUrl}#mockup-studio`} class="hover:text-[var(--foreground)] transition-colors">Live Device Mockup Studio</a></li>
+          <li><a href={`${homeUrl}#validator`} class="hover:text-[var(--foreground)] transition-colors">Favicon Health Validator</a></li>
+          <li><a href={`${homeUrl}#matrix`} class="hover:text-[var(--foreground)] transition-colors">Standard Size Cheat Sheet</a></li>
+          <li><a href={`${homeUrl}#snippets`} class="hover:text-[var(--foreground)] transition-colors">HTML / JSX Code Snippets</a></li>
+        </ul>
+      </div>
+
+      <!-- Format Specifications -->
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)] mb-4">
+          Specifications & Specs
+        </h4>
+        <ul class="space-y-2.5 text-xs text-[var(--muted-foreground)]">
+          <li><a href={`${homeUrl}#matrix`} class="hover:text-[var(--foreground)] transition-colors">16×16 & 32×32 Browser Tab (ICO/PNG)</a></li>
+          <li><a href={`${homeUrl}#matrix`} class="hover:text-[var(--foreground)] transition-colors">180×180 Apple Touch Icon</a></li>
+          <li><a href={`${homeUrl}#matrix`} class="hover:text-[var(--foreground)] transition-colors">192×192 & 512×512 Android PWA</a></li>
+          <li><a href={`${homeUrl}#matrix`} class="hover:text-[var(--foreground)] transition-colors">48×48 Google SERP Favicon Rule</a></li>
+          <li><a href={`${homeUrl}#faq`} class="hover:text-[var(--foreground)] transition-colors">Dynamic SVG Dark Mode Favicons</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal & Informational Pages -->
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-[var(--foreground)] mb-4">
+          Company & Legal
+        </h4>
+        <ul class="space-y-2.5 text-xs text-[var(--muted-foreground)]">
+          <li><a href={getRelativeLocaleUrl(currentLang, 'about-us')} class="hover:text-[var(--foreground)] transition-colors">About Us</a></li>
+          <li><a href={getRelativeLocaleUrl(currentLang, 'privacy-policy')} class="hover:text-[var(--foreground)] transition-colors">Privacy Policy</a></li>
+          <li><a href={getRelativeLocaleUrl(currentLang, 'terms-and-conditions')} class="hover:text-[var(--foreground)] transition-colors">Terms & Conditions</a></li>
+          <li><a href={getRelativeLocaleUrl(currentLang, 'contact-us')} class="hover:text-[var(--foreground)] transition-colors">Contact Us</a></li>
+          <li><a href={`${homeUrl}#faq`} class="hover:text-[var(--foreground)] transition-colors">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-[var(--border)] mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--muted-foreground)]">
+      <p>© {year} Favvicon.com. All dimensions, specifications, and SVG guides verified for modern web engines.</p>
+      <p class="flex items-center gap-4">
+        <span>No server uploads • Zero data retention • Free developer utility</span>
+      </p>
+    </div>
+  </div>
+</footer>

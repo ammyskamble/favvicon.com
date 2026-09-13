@@ -1,0 +1,22 @@
+---
+// src/pages/[lang]/contact-us.astro
+import Layout from '../../layouts/Layout.astro';
+import ContactContent from '../../components/info/ContactContent.astro';
+import { languages, defaultLang, type SupportedLanguage } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+---
+<Layout
+  lang={lang}
+  currentPath="contact-us"
+  title="Contact Us — Direct Engineering Inquiries & Feedback | Favvicon.com"
+  description="Contact the Favvicon.com development team. Submit feedback, report rendering issues, or ask questions regarding modern favicon standards."
+>
+  <ContactContent lang={lang} />
+</Layout>

@@ -1,0 +1,236 @@
+---
+// src/components/FaqSection.astro
+
+export interface FaqItem {
+  q: string;
+  a: string;
+  hasSteps?: boolean;
+  photoshopSteps?: string[];
+  illustratorSteps?: string[];
+  mathFormula?: {
+    formula: string;
+    explanation: string;
+  };
+}
+
+const faqs: FaqItem[] = [
+  {
+    q: "What is a favicon?",
+    a: "A favicon (short for 'favorite icon') is a tiny branding graphic displayed in web browser tabs, bookmark bars, history dropdowns, and search engine results pages beside your URL. It serves as a visual anchor that allows visitors to immediately identify your site among dozens of open tabs."
+  },
+  {
+    q: "What is favicon?",
+    a: "In web terminology, a favicon is the browser icon defined via a `<link rel=\"icon\">` tag or located at `/favicon.ico`. Originally introduced by Microsoft in 1999 as a 16×16 ICO file, it has evolved into a multi-resolution asset suite supporting SVG vectors, Apple Touch Icons, and Progressive Web App (PWA) splash screens."
+  },
+  {
+    q: "How to make a favicon?",
+    a: "You can make a favicon by creating a 512×512 pixel square master graphic and exporting it into standard resolutions (16×16, 32×32, 48×48, 180×180, 192×192, 512×512) or vector SVG.",
+    hasSteps: true,
+    photoshopSteps: [
+      "File > New: Create a 512×512 px square canvas at 72 or 300 PPI with a transparent background.",
+      "Design your logo or symbol boldly in the center. Ensure strong contrast and avoid tiny text.",
+      "File > Export > Export As: Set Format to PNG-32 with Transparency checked.",
+      "Upload the exported 512×512 PNG to Favvicon.com to generate multi-resolution .ico and mobile packages in 1 click."
+    ],
+    illustratorSteps: [
+      "File > New: Create an Artboard with Width 512 px, Height 512 px, and Color Mode RGB.",
+      "Center your vector artwork. Keep shapes bold and aligned to pixel boundaries (Snap to Pixel).",
+      "File > Export > Export for Screens: Select SVG (scalable vector) and PNG at 1x, 0.35x (180px), and 0.0625x (32px).",
+      "Alternatively, export SVG directly to embed dynamic dark/light theme CSS media queries."
+    ]
+  },
+  {
+    q: "Is the favicon 16x16 or 32x32?",
+    a: "Both! Standard desktop browser tabs render at 16×16 CSS pixels. However, on high-density Retina, 4K, and smartphone displays, the browser utilizes a Device Pixel Ratio (DPR) of 2x or 3x, requiring a 32×32 or 48×48 physical pixel bitmap to avoid blurriness.",
+    mathFormula: {
+      formula: "Physical Pixels = CSS Pixels × DPR  ⇒  16px × 2.0 (Retina) = 32×32 px",
+      explanation: "A 16×16 CSS viewport requires a 32×32 physical raster image on 2x Retina screens for 1:1 hardware pixel mapping."
+    }
+  },
+  {
+    q: "What size should a favicon be?",
+    a: "A favicon should be produced from a square 512×512 px master asset and served in key standard sizes: 16×16 px (standard tab), 32×32 px (Retina tab), 48×48 px (Google Search SERP rule), 180×180 px (Apple Touch Icon), and 192×192 / 512×512 px (PWA web manifest). Modern browsers also natively support scalable vector SVGs.",
+    mathFormula: {
+      formula: "Aspect Ratio Constraint: Width : Height = 1 : 1  (W = H)",
+      explanation: "All favicon specifications require an exact 1:1 square aspect ratio to prevent distortion across operating systems."
+    }
+  },
+  {
+    q: "How to increase favicon size?",
+    a: "Web browsers lock browser tab icons to a fixed 16×16 CSS pixel display box. You cannot physically force a browser tab to display a 64px icon. However, you can dramatically increase visual prominence, perceived size, and sharpness by trimming excess transparent padding around your logo, boosting color contrast against dark tab chrome, and providing 32×32 and vector SVG formats.",
+    mathFormula: {
+      formula: "Glyph Fill Efficiency = (Logo Bounding Area / Total Artboard Area) × 100%",
+      explanation: "Increasing logo boundary fill from 50% to 85% of the 1:1 canvas makes the icon appear visually twice as large at micro tab sizes."
+    }
+  },
+  {
+    q: "What is the best favicon design?",
+    a: "The best favicon design is minimal, high-contrast, and instantly recognizable at tiny 16×16 dimensions. Avoid detailed photorealistic images, complex gradients, or lengthy brand names. Focus on a single distinct glyph, monogram, or bold geometric silhouette that remains legible on both dark and light tab backgrounds."
+  },
+  {
+    q: "Can a favicon be 512x512?",
+    a: "Yes! In fact, 512×512 pixels is the official modern recommendation for your master source asset and Progressive Web App (PWA) manifest splash screen icon. Browsers automatically downscale 512×512 assets to smaller resolutions using bicubic interpolation, and Android Chrome requires 512×512 for web app installation.",
+    mathFormula: {
+      formula: "Downscale Factor = Target Resolution / Source Resolution  ⇒  16 / 512 = 0.03125 (1/32 scale)",
+      explanation: "Starting at 512×512 allows integer power-of-two downscaling (512 → 256 → 128 → 64 → 32 → 16) with minimal resampling distortion."
+    }
+  },
+  {
+    q: "Can I use a PNG as a favicon?",
+    a: "Yes. All modern browsers (Chrome, Safari, Firefox, Edge, Opera) have fully supported PNG favicons since 2010. PNG is preferred over legacy BMP/ICO for mobile devices because it offers crisp 32-bit alpha transparency and smaller compressed file sizes. Simply specify `<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\">`."
+  },
+  {
+    q: "Should I use PNG or SVG for favicon?",
+    a: "You should use both! Use an SVG favicon as your primary modern declaration (`<link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\">`) because it scales infinitely and supports native CSS dark mode color switching. Include a PNG (32×32) and multi-resolution ICO file as fallbacks for older browsers and automated search engine crawlers."
+  },
+  {
+    q: "What size should a favicon be in 2026?",
+    a: "In 2026, the modern web follows the 3-File Golden Rule: (1) `favicon.svg` (infinite vector scale + dark mode support), (2) `favicon.ico` (multi-res 16×16 and 32×32 binary container), and (3) `apple-touch-icon.png` (180×180 px for iOS/iPadOS). For PWAs, include 192×192 and 512×512 PNGs in `site.webmanifest`."
+  },
+  {
+    q: "What is a good favicon size?",
+    a: "A good favicon size depends on the destination: 32×32 px is the optimal raster size for desktop browser tabs, 48×48 px is required for Google Search results, 180×180 px is best for Apple iOS bookmarks, and 512×512 px is the ideal high-resolution master asset.",
+    mathFormula: {
+      formula: "Google SERP Indexing Rule: Size ≡ 0 (mod 48)  ⇒  Size ∈ {48, 96, 144, 192...}",
+      explanation: "Google explicitly mandates that search result favicons must be integer multiples of 48 pixels square."
+    }
+  },
+  {
+    q: "Can I use a GIF as a favicon?",
+    a: "Technically yes, browsers like Firefox support animated GIFs as favicons using `<link rel=\"icon\" type=\"image/gif\" href=\"/favicon.gif\">`. However, Google Chrome, Safari, and modern mobile browsers deliberately freeze or disable GIF animations in tab headers to prevent CPU drain and visual distractions. We strongly recommend SVG or PNG instead."
+  },
+  {
+    q: "How many px is a favicon?",
+    a: "A classic desktop favicon is 16×16 pixels (256 total pixels). On Retina displays, it renders using 32×32 pixels (1,024 pixels). For mobile devices and search engines, standard favicon sizes range from 48×48 px (Google SERP) up to 180×180 px (Apple iOS) and 512×512 px (PWA splash screen).",
+    mathFormula: {
+      formula: "Total Pixels = Width (px) × Height (px)  ⇒  16 × 16 = 256 px; 512 × 512 = 262,144 px",
+      explanation: "A 512px icon contains 1,024 times more graphical detail than a 16px micro tab icon."
+    }
+  },
+  {
+    q: "How do I adjust the favicon size?",
+    a: "To adjust your favicon size, use our free online favicon generator. Upload your PNG or SVG, and our tool automatically crops, centers, auto-pads to a 1:1 square ratio, and generates every required standard size (16, 32, 48, 96, 180, 192, 512 px) in an instant ZIP pack.",
+    hasSteps: true,
+    photoshopSteps: [
+      "Image > Image Size: In Adobe Photoshop, check 'Resample' set to Bicubic Sharper (reduction).",
+      "Change Width and Height to 32 Pixels (constrain 1:1 square proportions).",
+      "File > Save a Copy: Save as PNG-24 with transparency enabled."
+    ],
+    illustratorSteps: [
+      "Select Artboard Tool (Shift + O): Change Width and Height to 32 px or 48 px.",
+      "Scale vector artwork proportionally while holding Shift + Alt.",
+      "File > Export > Export for Screens: Export PNG at 1x resolution."
+    ]
+  },
+  {
+    q: "What is a normal favicon size?",
+    a: "A normal favicon size for web browsing is 16×16 pixels for standard displays and 32×32 pixels for Retina / High-DPI screens. In HTML, declaring `<link rel=\"icon\" href=\"/favicon.ico\" sizes=\"32x32\">` represents the normal universal industry baseline."
+  },
+  {
+    q: "How do I change my favicon?",
+    a: "To change your favicon: (1) Generate your new favicon pack at Favvicon.com, (2) Upload `favicon.ico`, `favicon.svg`, and `apple-touch-icon.png` to your web server's root or `public/` directory, (3) Update your HTML `<head>` link tags, and (4) Perform a hard browser refresh (`Ctrl + F5` or `Cmd + Shift + R`) to bust cached icons."
+  }
+];
+
+// Generate structured FAQPage JSON-LD schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a + (f.mathFormula ? ` Formula: ${f.mathFormula.formula} (${f.mathFormula.explanation})` : '')
+    }
+  }))
+};
+---
+<section id="faq" class="max-w-4xl mx-auto space-y-8 pt-8">
+  <div class="text-center space-y-3">
+    <span class="text-xs uppercase font-bold tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+      SEO-Friendly Developer FAQ & Cheat Sheet
+    </span>
+    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[var(--foreground)]">
+      Frequently Asked Questions About Favicons & Standard Sizes
+    </h2>
+    <p class="text-sm text-[var(--muted-foreground)] max-w-2xl mx-auto">
+      Detailed answers covering dimensions, formats (ICO, PNG, SVG), Photoshop & Illustrator export workflows, and mathematical conversion rules.
+    </p>
+  </div>
+
+  <div class="space-y-4">
+    {faqs.map((faq, index) => (
+      <details class="group rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 transition-all open:ring-1 open:ring-cyan-500/40">
+        <summary class="flex items-center justify-between cursor-pointer font-semibold text-sm sm:text-base text-[var(--foreground)] list-none select-none">
+          <span class="flex items-center gap-3">
+            <span class="w-6 h-6 rounded-md bg-cyan-500/15 text-cyan-400 font-mono text-xs flex items-center justify-center font-bold shrink-0">
+              {index + 1}
+            </span>
+            {faq.q}
+          </span>
+          <span class="transition-transform duration-200 group-open:rotate-180 text-[var(--muted-foreground)] shrink-0 ml-3">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </summary>
+
+        <div class="mt-4 pt-4 border-t border-[var(--border)] text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed pl-9 space-y-3">
+          <p>{faq.a}</p>
+
+          {/* Math Formula Box if available */}
+          {faq.mathFormula && (
+            <div class="p-3.5 rounded-xl border border-cyan-500/30 bg-cyan-500/5 space-y-1">
+              <div class="flex items-center gap-2 text-cyan-400 font-mono font-bold text-xs">
+                <span>📐 Mathematical Rule:</span>
+              </div>
+              <div class="font-mono text-xs text-[var(--foreground)] bg-[var(--card)] px-3 py-1.5 rounded-lg border border-[var(--border)] inline-block">
+                {faq.mathFormula.formula}
+              </div>
+              <p class="text-[11px] text-[var(--muted-foreground)]">
+                {faq.mathFormula.explanation}
+              </p>
+            </div>
+          )}
+
+          {/* Step-by-Step Instructions for Photoshop and Illustrator */}
+          {faq.hasSteps && (
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+              {faq.photoshopSteps && (
+                <div class="p-3.5 rounded-xl border border-[var(--border)] bg-[var(--muted)]/20 space-y-2">
+                  <div class="font-bold text-xs text-blue-400 flex items-center gap-1.5">
+                    <span class="w-4 h-4 rounded bg-blue-500/20 text-blue-300 flex items-center justify-center text-[10px]">Ps</span>
+                    Adobe Photoshop Steps:
+                  </div>
+                  <ol class="list-decimal pl-4 space-y-1.5 text-[11px] text-[var(--muted-foreground)]">
+                    {faq.photoshopSteps.map((step) => (
+                      <li>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {faq.illustratorSteps && (
+                <div class="p-3.5 rounded-xl border border-[var(--border)] bg-[var(--muted)]/20 space-y-2">
+                  <div class="font-bold text-xs text-amber-400 flex items-center gap-1.5">
+                    <span class="w-4 h-4 rounded bg-amber-500/20 text-amber-300 flex items-center justify-center text-[10px]">Ai</span>
+                    Adobe Illustrator Steps:
+                  </div>
+                  <ol class="list-decimal pl-4 space-y-1.5 text-[11px] text-[var(--muted-foreground)]">
+                    {faq.illustratorSteps.map((step) => (
+                      <li>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <!-- Inlined JSON-LD SEO Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>

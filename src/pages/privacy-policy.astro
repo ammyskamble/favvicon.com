@@ -1,0 +1,15 @@
+---
+// src/pages/privacy-policy.astro
+import Layout from '../layouts/Layout.astro';
+import PrivacyContent from '../components/info/PrivacyContent.astro';
+
+const lang = 'en';
+---
+<Layout
+  lang={lang}
+  currentPath="privacy-policy"
+  title="Privacy Policy — 100% Client-Side Private | Favvicon.com"
+  description="Read the Favvicon.com privacy policy. Zero server uploads, zero file retention, and 100% client-side favicon generation."
+>
+  <PrivacyContent lang={lang} />
+</Layout>

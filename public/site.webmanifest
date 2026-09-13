@@ -1,0 +1,16 @@
+{
+  "name": "Favicon Size Guide & Generator",
+  "short_name": "Favvicon",
+  "description": "Instant favicon size guide, cheat sheet, and generation tool for modern web standards.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#13141f",
+  "background_color": "#13141f",
+  "display": "standalone"
+}

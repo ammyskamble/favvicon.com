@@ -1,0 +1,112 @@
+---
+// src/components/Header.astro
+import LanguagePicker from './LanguagePicker.astro';
+import { type SupportedLanguage, getRelativeLocaleUrl } from '../i18n/ui';
+
+interface Props {
+  currentLang?: SupportedLanguage;
+  currentPath?: string;
+}
+
+const { currentLang = 'en', currentPath = '' } = Astro.props;
+const homeUrl = getRelativeLocaleUrl(currentLang);
+---
+<header class="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/85 backdrop-blur-md transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo & Title -->
+    <a href={homeUrl} class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[var(--ring)] rounded-lg p-1">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-[var(--foreground)] via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+            Favvicon<span class="text-cyan-400">.com</span>
+          </span>
+          <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
+            2026 Guide & Studio
+          </span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] hidden sm:block">Instant Favicon Matrix & Live Generator</p>
+      </div>
+    </a>
+
+    <!-- Navigation Links -->
+    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+      <a href={`${homeUrl}#studio`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        Live Generator
+      </a>
+      <a href={`${homeUrl}#mockup-studio`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        Device Mockups
+      </a>
+      <a href={`${homeUrl}#matrix`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        Size Cheat Sheet
+      </a>
+      <a href={`${homeUrl}#snippets`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        Code Snippets
+      </a>
+      <a href={`${homeUrl}#faq`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        FAQ
+      </a>
+      <a href={getRelativeLocaleUrl(currentLang, 'about-us')} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        About
+      </a>
+      <a href={getRelativeLocaleUrl(currentLang, 'contact-us')} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
+        Contact
+      </a>
+    </nav>
+
+    <!-- Right Controls: Language Picker, Theme Switcher & CTA -->
+    <div class="flex items-center gap-3">
+      <!-- Language Picker -->
+      <LanguagePicker currentLang={currentLang} currentPath={currentPath} />
+
+      <!-- Theme Toggle -->
+      <button 
+        id="theme-toggle" 
+        type="button" 
+        aria-label="Toggle theme" 
+        class="w-9 h-9 rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--ring)] cursor-pointer"
+      >
+        <svg id="theme-sun" class="w-4 h-4 hidden dark:block text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg id="theme-moon" class="w-4 h-4 block dark:hidden text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+      </button>
+
+      <a 
+        href={`${homeUrl}#studio`} 
+        class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white shadow-md shadow-indigo-500/20 transition-all hover:scale-[1.02] cursor-pointer"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Generate Pack
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const toggle = document.getElementById('theme-toggle');
+  toggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('favvicon-theme', isDark ? 'dark' : 'light');
+  });
+</script>

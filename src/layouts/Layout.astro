@@ -1,0 +1,129 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ThemeScript from '../components/ThemeScript.astro';
+import { languages, defaultLang, type SupportedLanguage, getRelativeLocaleUrl } from '../i18n/ui';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  lang?: SupportedLanguage;
+  currentPath?: string;
+}
+
+const {
+  title = "Favicon Size Guide & Free Favicon Generator — Standard Sizes & PNG to Favicon Maker",
+  description = "Discover what size should a favicon be with our complete standard favicon size guide. Learn what is a favicon, explore every favicon format (ICO, PNG, SVG), and convert PNG to favicon with our free online favicon maker.",
+  canonical,
+  lang = defaultLang,
+  currentPath = ""
+} = Astro.props;
+
+const canonicalUrl = canonical || `https://favvicon.com${getRelativeLocaleUrl(lang, currentPath)}`;
+
+const siteSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Favicon Size Guide & Generator",
+    "url": "https://favvicon.com/",
+    "description": description,
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript and HTML5 Canvas support",
+    "inLanguage": lang,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Favvicon.com",
+      "url": "https://favvicon.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Favvicon.com",
+    "url": "https://favvicon.com/",
+    "description": "The ultimate favicon size cheat sheet, asset validator, and PNG to favicon maker.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://favvicon.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+];
+---
+<!doctype html>
+<html lang={lang} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Favicon size, what is a favicon, favicon, favicon generator, what is favicon, favicon meaning, png to favicon, favicon maker, what is a favicon?, standard favicon size, favicon format, favicon size for website, what size should a favicon be" />
+    <meta name="author" content="Favvicon.com" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Hreflang Multi-Language Alternates -->
+    {Object.keys(languages).map((code) => (
+      <link
+        rel="alternate"
+        hreflang={code}
+        href={`https://favvicon.com${getRelativeLocaleUrl(code, currentPath)}`}
+      />
+    ))}
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={`https://favvicon.com${getRelativeLocaleUrl(defaultLang, currentPath)}`}
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Favvicon.com" />
+    <meta property="og:image" content="https://favvicon.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Favicon Size Guide & Online Generator Preview" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : lang} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://favvicon.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Favicon Size Guide & Online Generator Preview" />
+
+    <!-- Favicon Suite -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#13141f" />
+
+    <!-- Theme initialization script (anti-FOUC) -->
+    <ThemeScript />
+
+    <!-- Structured Data Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+  </head>
+  <body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen flex flex-col selection:bg-cyan-500 selection:text-white">
+    <Header currentLang={lang} currentPath={currentPath} />
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+    <Footer currentLang={lang} />
+  </body>
+</html>

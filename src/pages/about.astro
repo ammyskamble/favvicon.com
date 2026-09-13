@@ -1,0 +1,16 @@
+---
+// src/pages/about.astro (Alias)
+import Layout from '../layouts/Layout.astro';
+import AboutContent from '../components/info/AboutContent.astro';
+
+const lang = 'en';
+---
+<Layout
+  lang={lang}
+  currentPath="about"
+  canonical="https://favvicon.com/about-us/"
+  title="About Us — Mission, Principles & Technology Stack | Favvicon.com"
+  description="Learn why we built Favvicon.com: delivering modern 2026 standard favicon size guides, ad-free developer utilities, and 100% client-side privacy."
+>
+  <AboutContent lang={lang} />
+</Layout>

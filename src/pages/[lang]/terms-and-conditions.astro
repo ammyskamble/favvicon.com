@@ -1,0 +1,22 @@
+---
+// src/pages/[lang]/terms-and-conditions.astro
+import Layout from '../../layouts/Layout.astro';
+import TermsContent from '../../components/info/TermsContent.astro';
+import { languages, defaultLang, type SupportedLanguage } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+---
+<Layout
+  lang={lang}
+  currentPath="terms-and-conditions"
+  title="Terms & Conditions — Free Developer Usage Agreement | Favvicon.com"
+  description="Review the terms and conditions for using Favvicon.com. Retain 100% intellectual property ownership of all generated favicon packages."
+>
+  <TermsContent lang={lang} />
+</Layout>

@@ -1,0 +1,111 @@
+---
+// src/pages/[lang]/index.astro
+import Layout from '../../layouts/Layout.astro';
+import { FaviconStudio } from '../../components/tool/FaviconStudio';
+import { CheatSheetTable } from '../../components/tool/CheatSheetTable';
+import SeoContentSection from '../../components/SeoContentSection.astro';
+import SeoGuideContent from '../../components/SeoGuideContent.astro';
+import FaqSection from '../../components/FaqSection.astro';
+import { languages, defaultLang, type SupportedLanguage } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+---
+<Layout
+  lang={lang}
+  currentPath=""
+  title="Favicon Size Guide & Free Favicon Generator — Standard Sizes & PNG to Favicon Maker"
+  description="Discover what size should a favicon be with our complete standard favicon size guide. Learn what is a favicon, explore every favicon format (ICO, PNG, SVG), and convert PNG to favicon with our free online favicon maker."
+>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-8 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
+      <div class="w-[600px] h-[350px] bg-gradient-to-tr from-cyan-500/10 via-indigo-500/10 to-purple-500/10 rounded-full blur-3xl opacity-70"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+        <span>Standard Favicon Size 2026 • Free PNG to Favicon Generator & Maker</span>
+      </div>
+
+      <!-- Main H1 Headline -->
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--foreground)] max-w-4xl mx-auto leading-[1.15]">
+        Favicon Size Guide & <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+          Online Favicon Generator
+        </span>
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="text-sm sm:text-base text-[var(--muted-foreground)] max-w-2xl mx-auto leading-relaxed">
+        Discover what size should a favicon be for website design. Find standard favicon size specs for browsers, iOS, Android, and PWAs. Use our free PNG to favicon maker to preview in real device mockups and export complete packs in seconds.
+      </p>
+
+      <!-- Key Advantage Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-medium text-[var(--foreground)]">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+          <span class="text-cyan-400 font-bold">✓</span>
+          <span>Standard Favicon Size Matrix</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+          <span class="text-cyan-400 font-bold">✓</span>
+          <span>Free PNG to Favicon Maker</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+          <span class="text-cyan-400 font-bold">✓</span>
+          <span>Multi-Resolution ICO, PNG & SVG</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] shadow-sm">
+          <span class="text-cyan-400 font-bold">✓</span>
+          <span>Google SERP 48px Ready</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Favicon Generator & Live Mockup Studio -->
+  <section id="studio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <FaviconStudio client:load />
+  </section>
+
+  <!-- Interactive Cheat Sheet & Size Matrix -->
+  <section id="matrix" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+    <div class="text-center space-y-2 max-w-3xl mx-auto">
+      <span class="text-xs uppercase font-bold tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+        Live Reference Matrix
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--foreground)]">
+        Standard Favicon Size Cheat Sheet & Reference Matrix
+      </h2>
+      <p class="text-xs sm:text-sm text-[var(--muted-foreground)]">
+        Filter by platform, search dimensions, and copy validated &lt;link&gt; tag snippets directly into your clipboard.
+      </p>
+    </div>
+
+    <CheatSheetTable client:load />
+  </section>
+
+  <!-- Dedicated 800 - 1200 Word On-Page SEO Content Section -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[var(--border)]">
+    <SeoContentSection />
+  </section>
+
+  <!-- In-Depth Technical Engineering Guide -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[var(--border)]">
+    <SeoGuideContent />
+  </section>
+
+  <!-- Frequently Asked Questions -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[var(--border)]">
+    <FaqSection />
+  </section>
+</Layout>

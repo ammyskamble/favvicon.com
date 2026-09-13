@@ -1,0 +1,22 @@
+---
+// src/pages/[lang]/about-us.astro
+import Layout from '../../layouts/Layout.astro';
+import AboutContent from '../../components/info/AboutContent.astro';
+import { languages, defaultLang, type SupportedLanguage } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((l) => l !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+---
+<Layout
+  lang={lang}
+  currentPath="about-us"
+  title="About Us — Mission, Principles & Technology Stack | Favvicon.com"
+  description="Learn why we built Favvicon.com: delivering modern 2026 standard favicon size guides, ad-free developer utilities, and 100% client-side privacy."
+>
+  <AboutContent lang={lang} />
+</Layout>

@@ -1,0 +1,90 @@
+---
+// src/components/info/TermsContent.astro
+import { type SupportedLanguage } from '../../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = 'en' } = Astro.props;
+const lastUpdated = "September 14, 2026";
+---
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+  
+  <div class="text-center space-y-3">
+    <span class="text-xs uppercase font-bold tracking-widest text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+      Legal Agreement
+    </span>
+    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-[var(--foreground)]">
+      Terms & Conditions
+    </h1>
+    <p class="text-xs text-[var(--muted-foreground)]">
+      Last Revised: {lastUpdated} • Version 2.4
+    </p>
+  </div>
+
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-10 shadow-xl space-y-8 text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">
+    
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        1. Acceptance of Agreement
+      </h2>
+      <p>
+        By accessing, browsing, or utilizing the web applications, APIs, cheat sheets, or generation tools provided at <strong>Favvicon.com</strong> (the "Service"), you agree to be bound by these Terms and Conditions. If you do not agree with any provision herein, you must refrain from using the Service.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        2. Permitted Use & Free Developer License
+      </h2>
+      <p>
+        Favvicon.com provides free online tools designed to assist software engineers, graphic artists, and web designers in preparing website icon packages. You are granted a non-exclusive, worldwide, royalty-free license to use the generator for both non-commercial personal projects and commercial enterprise deployments.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        3. Intellectual Property Ownership of Generated Assets
+      </h2>
+      <div class="p-4 rounded-xl border border-cyan-500/30 bg-cyan-500/5 text-cyan-300 font-medium">
+        <strong>You Retain 100% Ownership:</strong> Favvicon.com claims zero ownership, copyright, or licensing rights over any image, trademark, logo, or icon file you process through our platform. All resized output files (including <code class="font-mono text-xs">favicon.ico</code>, PNGs, and SVG code) remain your exclusive intellectual property.
+      </div>
+      <p>
+        You warrant that you possess all requisite rights, licenses, or permissions for any source materials you upload, and that your use does not infringe upon any third-party patent, trademark, or copyright.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        4. Disclaimer of Warranties
+      </h2>
+      <p>
+        The Service is provided strictly on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis without warranties of any kind, whether express or implied. While we strive for absolute accuracy in accordance with current W3C, Apple, and Google specifications, we do not guarantee uninterrupted uptime or that generated files will meet every platform-specific rendering requirement across legacy systems.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        5. Limitation of Liability
+      </h2>
+      <p>
+        In no event shall Favvicon.com, its maintainers, or affiliates be held liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use or inability to use our tools, including but not limited to loss of data, search engine ranking fluctuations, or business interruption.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        6. Modifications to Terms
+      </h2>
+      <p>
+        We reserve the right to modify these Terms at any time to reflect updates to web platform standards or regulatory mandates. Continued use of the Service following revisions constitutes your acceptance of the amended Terms.
+      </p>
+      <p class="font-mono text-xs text-cyan-400 pt-2">
+        Legal Inquiries: <a href="mailto:legal@favvicon.com" class="hover:underline">legal@favvicon.com</a>
+      </p>
+    </section>
+
+  </div>
+
+</div>

@@ -1,0 +1,101 @@
+---
+// src/components/info/PrivacyContent.astro
+import { type SupportedLanguage } from '../../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = 'en' } = Astro.props;
+const lastUpdated = "September 14, 2026";
+---
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+  
+  <div class="text-center space-y-3">
+    <span class="text-xs uppercase font-bold tracking-widest text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+      Legal Documentation
+    </span>
+    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-[var(--foreground)]">
+      Privacy Policy
+    </h1>
+    <p class="text-xs text-[var(--muted-foreground)]">
+      Effective Date: {lastUpdated} • Version 2.4
+    </p>
+  </div>
+
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-10 shadow-xl space-y-8 text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">
+    
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        1. Our Core Commitment: 100% Client-Side Privacy
+      </h2>
+      <p>
+        At <strong>Favvicon.com</strong>, we believe that web developer utilities should respect user privacy by default. When you upload, inspect, resize, or generate favicon files using our online platform, <strong>your assets are never transmitted to or stored on our servers</strong>.
+      </p>
+      <div class="p-4 rounded-xl border border-emerald-500/30 bg-emerald-500/5 text-emerald-400 font-medium">
+        ✓ <strong>Zero Server Uploads:</strong> All canvas operations, aspect ratio auto-padding, PNG downscaling, multi-resolution binary ICO bundling, and ZIP generation execute entirely within your local web browser sandbox using client-side JavaScript and HTML5 Canvas APIs.
+      </div>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        2. Information We Do Not Collect
+      </h2>
+      <ul class="list-disc pl-5 space-y-2">
+        <li><strong>Uploaded Graphics:</strong> We do not store, view, copy, or index the images, logos, or SVG vectors you process.</li>
+        <li><strong>Generated Packages:</strong> The ZIP archive and individual files compiled during your session exist strictly in your browser's temporary memory and are discarded as soon as you close or refresh the tab.</li>
+        <li><strong>Personal User Profiles:</strong> We do not require registration, account creation, or payment credentials.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        3. Information Collected Automatically
+      </h2>
+      <p>
+        Like most websites, our host infrastructure automatically collects standard, non-personally identifiable technical telemetry to maintain server security and availability. This may include:
+      </p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li>Browser engine and user-agent string</li>
+        <li>Referring webpage and entry URL</li>
+        <li>Aggregated access times and HTTP status codes</li>
+        <li>Anonymized IP addresses used solely for automated DDoS prevention and rate-limiting</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        4. Local Storage and Cookies
+      </h2>
+      <p>
+        Favvicon.com does not utilize intrusive third-party advertising cookies or cross-site tracking pixels. We use standard browser <code class="px-1.5 py-0.5 rounded bg-[var(--muted)] font-mono text-xs">localStorage</code> solely to remember your preferred visual theme:
+      </p>
+      <ul class="list-disc pl-5 space-y-1.5">
+        <li><code class="font-mono text-xs">favvicon-theme</code>: Stores either <code class="font-mono text-xs">"dark"</code> or <code class="font-mono text-xs">"light"</code> to prevent layout flash during subsequent page loads.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        5. GDPR and CCPA / CPRA Compliance
+      </h2>
+      <p>
+        Under the European General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA), users possess fundamental rights regarding their personal data. Because Favvicon.com practices strict data minimization and does not hold personal data, there is no database to sell, lease, or monetize.
+      </p>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-lg font-bold text-[var(--foreground)]">
+        6. Contact Our Privacy Officer
+      </h2>
+      <p>
+        If you have questions, feedback, or concerns regarding our privacy architecture, contact our Data Privacy Officer at:
+      </p>
+      <p class="font-mono text-xs text-cyan-400">
+        Email: <a href="mailto:privacy@favvicon.com" class="hover:underline">privacy@favvicon.com</a>
+      </p>
+    </section>
+
+  </div>
+
+</div>

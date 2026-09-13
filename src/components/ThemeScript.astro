@@ -1,0 +1,19 @@
+---
+// Inlined script in <head> to prevent theme flash (FOUC)
+---
+<script is:inline>
+  (function() {
+    function getThemePreference() {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('favvicon-theme')) {
+        return localStorage.getItem('favvicon-theme');
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'dark'; // Dark mode default
+    }
+    const theme = getThemePreference();
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+</script>

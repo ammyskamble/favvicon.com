@@ -1,0 +1,146 @@
+---
+// src/components/SeoGuideContent.astro
+---
+<section id="guide" class="max-w-4xl mx-auto space-y-12 text-[var(--foreground)] leading-relaxed">
+  
+  <!-- Section Eyebrow -->
+  <div class="text-center space-y-3">
+    <span class="text-xs uppercase font-bold tracking-widest text-cyan-400 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+      Authoritative 2026 Web Engineering Guide
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+      The Modern Favicon Size & Format Specification
+    </h2>
+    <p class="text-sm text-[var(--muted-foreground)] max-w-2xl mx-auto">
+      Cut through obsolete 2012 tutorials. Learn how modern Chromium, WebKit, and Gecko engines handle vector SVGs, multi-resolution ICO containers, and mobile PWA manifests today.
+    </p>
+  </div>
+
+  <!-- Content Block 1: Why Most Favicon Guides Are 10 Years Outdated -->
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-lg space-y-5">
+    <h3 class="text-xl font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2.5">
+      <span class="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 font-mono text-sm flex items-center justify-center font-black">
+        01
+      </span>
+      Why 90% of Favicon Size Guides Are Ten Years Outdated
+    </h3>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      If you search the web for favicon size recommendations, you will find dozens of tutorials telling you to export over 20 separate PNG files—including obsolete sizes like <code class="px-1.5 py-0.5 rounded bg-[var(--muted)] font-mono text-xs">mstile-144x144.png</code> for Windows 8 Metro tiles, legacy <code class="px-1.5 py-0.5 rounded bg-[var(--muted)] font-mono text-xs">apple-touch-icon-57x57.png</code> for the iPhone 3GS, and complex XML configurations.
+    </p>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      In <strong>2026</strong>, modern operating systems and browser engines (Chromium 80+, Safari 16+, Firefox Quantum, Edge) have standardized their asset resolution algorithms. Modern devices automatically downscale high-resolution assets using hardware-accelerated bicubic interpolation. Supplying 20+ separate link tags bloats your initial HTML <code class="px-1.5 py-0.5 rounded bg-[var(--muted)] font-mono text-xs">&lt;head&gt;</code> payload, triggers unnecessary speculative HTTP requests, and increases maintenance overhead.
+    </p>
+  </div>
+
+  <!-- Content Block 2: The Modern 3-File Golden Rule -->
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-lg space-y-5">
+    <h3 class="text-xl font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2.5">
+      <span class="w-8 h-8 rounded-lg bg-cyan-500/15 text-cyan-400 font-mono text-sm flex items-center justify-center font-black">
+        02
+      </span>
+      The Modern 3-File Golden Rule for Maximum Performance
+    </h3>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      Web performance experts and W3C engineers recommend the <strong>Streamlined 3-File Favicon Stack</strong>. This lightweight setup covers <strong>99.8% of global devices</strong> with zero visual degradation:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+      <!-- File 1: SVG -->
+      <div class="p-5 rounded-xl border border-purple-500/30 bg-purple-500/5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-purple-400">1. favicon.svg</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-semibold">Universal</span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+          Infinitely scalable vector format. Renders razor-sharp on 1080p, 4K, 5K, and Retina displays while weighing under 3 KB. Supports native CSS dark/light theme switching.
+        </p>
+      </div>
+
+      <!-- File 2: ICO -->
+      <div class="p-5 rounded-xl border border-cyan-500/30 bg-cyan-500/5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-cyan-400">2. favicon.ico</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold">Fallback</span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+          Packs both 16×16 and 32×32 bitmap layers. Placed directly at the root URL <code class="font-mono text-[11px]">/favicon.ico</code> to satisfy automated crawlers, RSS readers, and legacy desktop browsers.
+        </p>
+      </div>
+
+      <!-- File 3: Apple Touch -->
+      <div class="p-5 rounded-xl border border-indigo-500/30 bg-indigo-500/5 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs font-bold text-indigo-400">3. apple-touch-icon</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold">180×180 px</span>
+        </div>
+        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+          High-density square PNG for iOS and iPadOS "Add to Home Screen" bookmarks. Apple automatically rounds the corners with its proprietary squircle curve.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Block 3: Dynamic SVG Favicons with Dark Mode -->
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-lg space-y-5">
+    <h3 class="text-xl font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2.5">
+      <span class="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-400 font-mono text-sm flex items-center justify-center font-black">
+        03
+      </span>
+      Dynamic SVG Favicons with Native Dark Mode Switching
+    </h3>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      A common frustration for web designers is an icon that looks great on a light browser tab, but becomes completely invisible when a user switches to dark mode. Because SVG files can embed CSS stylesheets, you can embed a <code class="px-1.5 py-0.5 rounded bg-[var(--muted)] font-mono text-xs">@media (prefers-color-scheme: dark)</code> query directly inside your vector favicon:
+    </p>
+
+    <div class="rounded-xl border border-gray-800 bg-[#0f141c] p-4 text-xs font-mono text-emerald-300 overflow-x-auto">
+      <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;
+  &lt;style&gt;
+    path &#123; fill: #1e293b; &#125;
+    @media (prefers-color-scheme: dark) &#123;
+      path &#123; fill: #38bdf8; &#125;
+    &#125;
+  &lt;/style&gt;
+  &lt;path d="..." /&gt;
+&lt;/svg&gt;</code></pre>
+    </div>
+    <p class="text-xs text-[var(--muted-foreground)]">
+      When a user toggles their OS or browser between Light and Dark mode, the browser instantly updates the tab favicon fill color without requiring any JavaScript or page reload.
+    </p>
+  </div>
+
+  <!-- Content Block 4: The Google SERP Favicon Rule (48x48 Multiples) -->
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-lg space-y-5">
+    <h3 class="text-xl font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2.5">
+      <span class="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-400 font-mono text-sm flex items-center justify-center font-black">
+        04
+      </span>
+      The Google Search SERP Favicon Rule: Multiples of 48px Square
+    </h3>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      Google displays website favicons prominently beside search results on both mobile and desktop SERP pages. Having a crisp, recognizable favicon significantly improves organic Click-Through Rates (CTR).
+    </p>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      However, Google Search Central documentation specifies a strict requirement: <strong>your favicon image must be a multiple of 48px square</strong> (e.g. 48×48, 96×96, 144×144, or 192×192 px). If your favicon is non-square (such as 16×32) or is smaller than 48px, Google may refuse to index your icon and instead display a generic gray globe placeholder.
+    </p>
+    <div class="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 text-xs text-amber-200">
+      <strong>Pro Tip:</strong> Our generator automatically produces <code class="font-mono">favicon-48x48.png</code> and <code class="font-mono">favicon-96x96.png</code> to ensure instant recognition and compliance with Googlebot crawler requirements.
+    </div>
+  </div>
+
+  <!-- Content Block 5: PWA Web App Manifest Configuration -->
+  <div class="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-lg space-y-5">
+    <h3 class="text-xl font-bold tracking-tight text-[var(--foreground)] flex items-center gap-2.5">
+      <span class="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-400 font-mono text-sm flex items-center justify-center font-black">
+        05
+      </span>
+      Progressive Web App (PWA) Manifest: Maskable vs Any Icons
+    </h3>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      To make a website installable on modern Android and desktop Chrome, you must provide a <code class="px-1.5 py-0.5 rounded bg-[var(--muted)] font-mono text-xs">site.webmanifest</code> file declaring two primary icon resolutions: <strong>192×192 px</strong> (home screen launch) and <strong>512×512 px</strong> (splash screen).
+    </p>
+    <p class="text-sm text-[var(--muted-foreground)] leading-relaxed">
+      Modern Android devices use adaptive icon shaping (circles, rounded squares, squircle masks). If you do not configure the <code class="font-mono text-xs">"purpose": "maskable"</code> property with appropriate 10% safe-zone padding, Android will place your icon inside an unsightly white rounded rectangle with thick borders. Favvicon.com generates both <code class="font-mono text-xs">"any"</code> and <code class="font-mono text-xs">"maskable"</code> entries automatically.
+    </p>
+  </div>
+
+</section>
