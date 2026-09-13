@@ -15,5 +15,7 @@ User-agent: Applebot
 Allow: /
 
 # XML Sitemaps
+Sitemap: https://favvicon.com/sitemap.xml
 Sitemap: https://favvicon.com/sitemap-index.xml
+Sitemap: https://favvicon.pages.dev/sitemap.xml
 Sitemap: https://favvicon.pages.dev/sitemap-index.xml
