@@ -1,0 +1,88 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+import { Home, Sparkles, Table2, HelpCircle, ArrowLeft, RefreshCw } from 'lucide-react';
+
+const title = "404 — Page Not Found | Favvicon.com";
+const description = "The page you requested could not be found. Return to Favvicon.com for our complete favicon size guide, cheat sheet, and free instant generator.";
+---
+
+<Layout title={title} description={description} currentPath="/404/">
+  <div class="relative overflow-hidden py-20 md:py-32 flex items-center justify-center min-h-[75vh]">
+    <!-- Ambient glowing backgrounds -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-cyan-500/15 via-blue-500/10 to-transparent blur-3xl pointer-events-none rounded-full" aria-hidden="true"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-500/10 blur-3xl pointer-events-none rounded-full" aria-hidden="true"></div>
+
+    <div class="container mx-auto px-4 max-w-3xl relative z-10 text-center">
+      <!-- 404 Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-semibold tracking-wide uppercase mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+        HTTP 404 Error
+      </div>
+
+      <!-- Giant Decorative Gradient Number -->
+      <h1 class="text-7xl sm:text-9xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500 dark:from-white dark:via-neutral-300 dark:to-neutral-600 mb-4 select-none drop-shadow-sm font-mono">
+        404
+      </h1>
+
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mb-4">
+        Oops! This page went off the canvas
+      </h2>
+
+      <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto mb-10 leading-relaxed">
+        The link you followed may be broken, expired, or the page may have been moved. Everything else on <span class="text-cyan-400 font-semibold">Favvicon.com</span> is running smoothly!
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+        <a
+          href="/"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/25 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <Home className="w-4 h-4" />
+          Back to Homepage
+        </a>
+        <a
+          href="/#generator"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-neutral-900/60 dark:bg-neutral-800/80 hover:bg-neutral-800 dark:hover:bg-neutral-700/80 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <Sparkles className="w-4 h-4 text-cyan-400" />
+          Launch Favicon Maker
+        </a>
+        <a
+          href="/#matrix"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-neutral-100 dark:bg-neutral-900/50 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <Table2 className="w-4 h-4 text-purple-400" />
+          Browse Size Matrix
+        </a>
+      </div>
+
+      <!-- Quick Helpful Links Card -->
+      <div class="p-6 sm:p-8 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800/80 shadow-xl text-left">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-4 flex items-center gap-2">
+          <HelpCircle className="w-4 h-4 text-cyan-400" />
+          Popular Resources & Shortcuts
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <a href="/#faq" class="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/40 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/10 border border-neutral-200/60 dark:border-neutral-800 transition-colors group flex items-center justify-between">
+            <span class="text-neutral-800 dark:text-neutral-200 group-hover:text-cyan-400 font-medium">17-Question FAQ Guide</span>
+            <span class="text-xs text-neutral-400 group-hover:translate-x-0.5 transition-transform">→</span>
+          </a>
+          <a href="/about-us/" class="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/40 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/10 border border-neutral-200/60 dark:border-neutral-800 transition-colors group flex items-center justify-between">
+            <span class="text-neutral-800 dark:text-neutral-200 group-hover:text-cyan-400 font-medium">About Favvicon.com</span>
+            <span class="text-xs text-neutral-400 group-hover:translate-x-0.5 transition-transform">→</span>
+          </a>
+          <a href="/privacy-policy/" class="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/40 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/10 border border-neutral-200/60 dark:border-neutral-800 transition-colors group flex items-center justify-between">
+            <span class="text-neutral-800 dark:text-neutral-200 group-hover:text-cyan-400 font-medium">100% Client-Side Privacy Policy</span>
+            <span class="text-xs text-neutral-400 group-hover:translate-x-0.5 transition-transform">→</span>
+          </a>
+          <a href="/contact-us/" class="p-3 rounded-lg bg-neutral-50 dark:bg-neutral-800/40 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/10 border border-neutral-200/60 dark:border-neutral-800 transition-colors group flex items-center justify-between">
+            <span class="text-neutral-800 dark:text-neutral-200 group-hover:text-cyan-400 font-medium">Contact & Support Form</span>
+            <span class="text-xs text-neutral-400 group-hover:translate-x-0.5 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

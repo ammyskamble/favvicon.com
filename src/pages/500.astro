@@ -1,0 +1,79 @@
+---
+// src/pages/500.astro
+import Layout from '../layouts/Layout.astro';
+import { Home, RefreshCw, AlertTriangle, Sparkles, MessageSquare, ShieldCheck } from 'lucide-react';
+
+const title = "500 — Internal Server Error | Favvicon.com";
+const description = "An unexpected error occurred while loading this resource on Favvicon.com. Our client-side privacy remains 100% intact.";
+---
+
+<Layout title={title} description={description} currentPath="/500/">
+  <div class="relative overflow-hidden py-20 md:py-32 flex items-center justify-center min-h-[75vh]">
+    <!-- Ambient glowing backgrounds -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-amber-500/15 via-rose-500/10 to-transparent blur-3xl pointer-events-none rounded-full" aria-hidden="true"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-amber-500/10 blur-3xl pointer-events-none rounded-full" aria-hidden="true"></div>
+
+    <div class="container mx-auto px-4 max-w-3xl relative z-10 text-center">
+      <!-- 500 Status Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-semibold tracking-wide uppercase mb-6 shadow-sm">
+        <AlertTriangle className="w-4 h-4 text-amber-400 animate-pulse" />
+        HTTP 500 — Server Incident
+      </div>
+
+      <!-- Giant Decorative Gradient Number -->
+      <h1 class="text-7xl sm:text-9xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-200 via-amber-400 to-amber-700 dark:from-white dark:via-amber-300 dark:to-amber-600 mb-4 select-none drop-shadow-sm font-mono">
+        500
+      </h1>
+
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 dark:text-white mb-4">
+        Something unexpected interrupted the render
+      </h2>
+
+      <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto mb-10 leading-relaxed">
+        Our edge servers encountered an internal hiccup. Don't worry — all image processing on Favvicon.com executes 100% inside your browser's private memory, so your designs were not lost or compromised.
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-14">
+        <button
+          onclick="window.location.reload()"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-semibold text-sm shadow-lg shadow-amber-500/25 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+        >
+          <RefreshCw className="w-4 h-4" />
+          Reload This Page
+        </button>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-neutral-900/60 dark:bg-neutral-800/80 hover:bg-neutral-800 dark:hover:bg-neutral-700/80 border border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-white font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <Home className="w-4 h-4" />
+          Return Home
+        </a>
+        <a
+          href="/contact-us/"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-neutral-100 dark:bg-neutral-900/50 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <MessageSquare className="w-4 h-4 text-amber-400" />
+          Report Bug
+        </a>
+      </div>
+
+      <!-- Security & Privacy Reassurance Card -->
+      <div class="p-6 sm:p-8 rounded-2xl bg-white/60 dark:bg-neutral-900/60 backdrop-blur-md border border-neutral-200/80 dark:border-neutral-800/80 shadow-xl text-left">
+        <div class="flex items-start gap-4">
+          <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-neutral-900 dark:text-white mb-1">
+              Your assets and privacy remain 100% safe
+            </h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Favvicon.com never uploads, records, or retains your image files on remote servers. All canvas conversions and ICO compiling execute strictly within your local browser runtime.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
