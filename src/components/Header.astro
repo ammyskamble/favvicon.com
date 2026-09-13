@@ -10,12 +10,23 @@ interface Props {
 
 const { currentLang = 'en', currentPath = '' } = Astro.props;
 const homeUrl = getRelativeLocaleUrl(currentLang);
+
+const navTabs = [
+  { label: 'Favicon Maker', href: `${homeUrl}#studio`, id: 'maker', isPage: false },
+  { label: 'Size Matrix', href: `${homeUrl}#matrix`, id: 'matrix', isPage: false },
+  { label: 'Size Guide', href: `${homeUrl}#guide`, id: 'guide', isPage: false },
+  { label: 'FAQ', href: `${homeUrl}#faq`, id: 'faq', isPage: false },
+  { label: 'About', href: getRelativeLocaleUrl(currentLang, 'about-us'), id: 'about-us', isPage: true },
+  { label: 'Contact', href: getRelativeLocaleUrl(currentLang, 'contact-us'), id: 'contact-us', isPage: true },
+];
 ---
-<header class="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/85 backdrop-blur-md transition-colors">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <!-- Logo & Title -->
-    <a href={homeUrl} class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[var(--ring)] rounded-lg p-1">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
+
+<header class="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-md transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+    
+    <!-- Brand / Logo -->
+    <a href={homeUrl} class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[var(--ring)] rounded-xl p-1 shrink-0">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 via-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
         <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="4"></rect>
           <circle cx="8.5" cy="8.5" r="1.5"></circle>
@@ -24,44 +35,42 @@ const homeUrl = getRelativeLocaleUrl(currentLang);
       </div>
       <div>
         <div class="flex items-center gap-2">
-          <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-[var(--foreground)] via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+          <span class="font-black text-lg tracking-tight bg-gradient-to-r from-[var(--foreground)] via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
             Favvicon<span class="text-cyan-400">.com</span>
           </span>
-          <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
-            2026 Guide & Studio
+          <span class="hidden xl:inline-block text-[10px] uppercase font-extrabold tracking-wider px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
+            2026 Guide
           </span>
         </div>
-        <p class="text-xs text-[var(--muted-foreground)] hidden sm:block">Instant Favicon Matrix & Live Generator</p>
+        <p class="text-[11px] text-[var(--muted-foreground)] hidden sm:block font-medium">Instant Favicon Matrix & Live Maker</p>
       </div>
     </a>
 
-    <!-- Navigation Links -->
-    <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
-      <a href={`${homeUrl}#studio`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        Live Generator
-      </a>
-      <a href={`${homeUrl}#mockup-studio`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        Device Mockups
-      </a>
-      <a href={`${homeUrl}#matrix`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        Size Cheat Sheet
-      </a>
-      <a href={`${homeUrl}#snippets`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        Code Snippets
-      </a>
-      <a href={`${homeUrl}#faq`} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        FAQ
-      </a>
-      <a href={getRelativeLocaleUrl(currentLang, 'about-us')} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        About
-      </a>
-      <a href={getRelativeLocaleUrl(currentLang, 'contact-us')} class="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors">
-        Contact
-      </a>
+    <!-- Top Menu Tabs (Segmented Pill Nav for Desktop) -->
+    <nav class="hidden lg:flex items-center p-1 rounded-full bg-[var(--card)]/80 border border-[var(--border)] shadow-sm backdrop-blur-md">
+      {navTabs.map((tab) => {
+        const isActive = tab.isPage && (currentPath === tab.id || currentPath === tab.id.replace('-us', ''));
+        return (
+          <a
+            href={tab.href}
+            class:list={[
+              "px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 flex items-center gap-1.5",
+              isActive
+                ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-sm font-bold"
+                : "text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)]"
+            ]}
+          >
+            {tab.id === 'maker' && (
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            )}
+            {tab.label}
+          </a>
+        );
+      })}
     </nav>
 
-    <!-- Right Controls: Language Picker, Theme Switcher & CTA -->
-    <div class="flex items-center gap-3">
+    <!-- Right Controls: Language, Theme Switcher, Mobile Hamburger & CTA -->
+    <div class="flex items-center gap-2 sm:gap-3 shrink-0">
       <!-- Language Picker -->
       <LanguagePicker currentLang={currentLang} currentPath={currentPath} />
 
@@ -70,7 +79,7 @@ const homeUrl = getRelativeLocaleUrl(currentLang);
         id="theme-toggle" 
         type="button" 
         aria-label="Toggle theme" 
-        class="w-9 h-9 rounded-lg border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--ring)] cursor-pointer"
+        class="w-9 h-9 rounded-xl border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--ring)] cursor-pointer"
       >
         <svg id="theme-sun" class="w-4 h-4 hidden dark:block text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="4"></circle>
@@ -84,29 +93,110 @@ const homeUrl = getRelativeLocaleUrl(currentLang);
           <path d="m19.07 4.93-1.41 1.41"></path>
         </svg>
         <svg id="theme-moon" class="w-4 h-4 block dark:hidden text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          <path d="M12 3a6 6 0 0 0 9 9 9 0 1 1-9-9Z"></path>
         </svg>
       </button>
 
+      <!-- Primary CTA Button -->
       <a 
         href={`${homeUrl}#studio`} 
-        class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white shadow-md shadow-indigo-500/20 transition-all hover:scale-[1.02] cursor-pointer"
+        class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-500 via-cyan-500 to-blue-600 hover:from-indigo-600 hover:to-cyan-600 text-white shadow-md shadow-cyan-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
       >
-        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        Generate Pack
+        <span>Generate Pack</span>
       </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="Open mobile navigation menu"
+        aria-expanded="false"
+        class="lg:hidden w-9 h-9 rounded-xl border border-[var(--border)] bg-[var(--card)] text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--ring)] cursor-pointer"
+      >
+        <svg id="menu-icon-bars" class="w-5 h-5 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+        <svg id="menu-icon-close" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border)] bg-[var(--background)]/98 backdrop-blur-xl px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150">
+    <div class="grid grid-cols-2 gap-2">
+      {navTabs.map((tab) => {
+        const isActive = tab.isPage && (currentPath === tab.id || currentPath === tab.id.replace('-us', ''));
+        return (
+          <a
+            href={tab.href}
+            class:list={[
+              "px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-150 flex items-center justify-between border",
+              isActive
+                ? "bg-gradient-to-r from-cyan-500/15 to-blue-600/15 border-cyan-500/40 text-cyan-400 font-bold"
+                : "border-[var(--border)] bg-[var(--card)]/50 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--accent)]"
+            ]}
+          >
+            <span>{tab.label}</span>
+            <span class="text-[10px] text-neutral-400">→</span>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Mobile CTA -->
+    <a 
+      href={`${homeUrl}#studio`} 
+      class="w-full mt-2 inline-flex items-center justify-center gap-2 text-xs font-bold px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20"
+    >
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span>Launch Favicon Maker</span>
+    </a>
   </div>
 </header>
 
 <script is:inline>
+  // Theme Toggle
   const toggle = document.getElementById('theme-toggle');
   toggle?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('favvicon-theme', isDark ? 'dark' : 'light');
+  });
+
+  // Mobile Menu Toggle
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconBars = document.getElementById('menu-icon-bars');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  mobileBtn?.addEventListener('click', () => {
+    const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+    mobileBtn.setAttribute('aria-expanded', String(!isExpanded));
+    mobileMenu?.classList.toggle('hidden');
+    iconBars?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  // Auto-close mobile drawer when any link is clicked
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      mobileBtn?.setAttribute('aria-expanded', 'false');
+      iconBars?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
   });
 </script>
